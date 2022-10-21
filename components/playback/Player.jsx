@@ -11,7 +11,7 @@ export default function Player() {
         ref={video}
         style={styles.video}
         source={{
-          uri: 'https://customer-jg3x48cebqepyjii.cloudflarestream.com/7fcd3de9fa8e5f886d6cd984cc04745d/manifest/video.m3u8',
+          uri: 'https://customer-jg3x48cebqepyjii.cloudflarestream.com/975160e848534d628de9b1e635c13ff6/manifest/video.m3u8',
         }}
         useNativeControls
         resizeMode="contain"
