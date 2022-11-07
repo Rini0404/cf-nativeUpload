@@ -52,41 +52,29 @@ export default function CameraView() {
       cameraRef.stopRecording();
     }
   };
-  
-  // tauthToken
-  // mEqflkxLByGhidIpRhFdLGRyoLsSSn5xxutkGsno
 
 
   const postVideo = async (source) => {
-    const cloudflareURL = "https://api.cloudflare.com/client/v4/accounts/4620feac32477b7ac7326aee3b509daf/stream"
 
-    // upload video to url
-    const form = new FormData();
-
-    const file = {
+    const formData = new FormData();
+    formData.append("file", {
       uri: source,
-      name: "test",
-    };
-
-    form.append("file", file);
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "Authorization": "Bearer mEqflkxLByGhidIpRhFdLGRyoLsSSn5xxutkGsno"
-      },
-      
-    };
-
-    axios.post(cloudflareURL, form, config)
-      .then((response) => {
-        console.log(response);
-      }
-      )
-      .catch((error) => {
-        console.log(error);
+      type: "video/mp4",
+      name: "video",
+    });
+    try {
+      const res = await axios.post("https://api.cloudflare.com/client/v4/accounts/4620feac32477b7ac7326aee3b509daf/stream", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": "Bearer mEqflkxLByGhidIpRhFdLGRyoLsSSn5xxutkGsno"
+        },
       });
-    
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+
+   
   };
 
   useEffect(() => {
